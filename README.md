@@ -21,7 +21,7 @@ We propose a system for allowing students to provide feedback that instructors c
 
 ## (Implemented) Visualization Components
 
-[Visualization Demo Gif](gif1.gif)
+![Visualization Demo Gif](gif1.gif)
 
 
 ### Heatmapped Video
