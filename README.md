@@ -54,14 +54,14 @@ For simplicity, consider one possible point of confusion in a video. Let's say t
 Our goal in the mocking process is to then generate a group of points around (100,100) in space and around 30s in time. 
 To accomplish this, we generate three Gaussian distributions - one for x, one for y and one for time.
 * The x and y distributions are centered at 100, and the script gives them default standard deviations of 20
-* For cases where it makes more intuitive sense for the distributions to be "taller" or "wider" to cover a certain area of the screen, this default is overriden in a manual trial/error manner on a case by case basis. 
+   * For cases where it makes more intuitive sense for the distributions to be "taller" or "wider" to cover a certain area of the screen, this default is overriden in a manual trial/error manner on a case by case basis. 
 * The time distribution (actually in milliseconds in the script) is centered at 30,000 and has a default standard deviation of 1500ms.   
-* For cases where it makes more intuitive sense for the points to be more spread out over time, this default is overriden in the same way as the x and y standard deviations are. 
+   * For cases where it makes more intuitive sense for the points to be more spread out over time, this default is overriden in the same way as the x and y standard deviations are. 
 * Each distribution has a default sample size of 1000. This is very loosely based on the following assumptions:
-* Our visualization assumes the video and its corresponding click data is sampled from somewhere in the second half corresponding MOOC, after many of the lurkers and unsure students have stopped actively participating or dropped. 
-* Typical MOOCs enroll around 43,000 students
-* 6.5% of these students finish the course
-* With 2,795 students finishing the course, a very loose estimate would be to say around 1,000 students would express confusion at times where the instructor could have been more clear about something.
+   * Our visualization assumes the video and its corresponding click data is sampled from somewhere in the second half corresponding MOOC, after many of the lurkers and unsure students have stopped actively participating or dropped. 
+   * Typical MOOCs enroll around 43,000 students
+   * 6.5% of these students finish the course
+   * With 2,795 students finishing the course, a very loose estimate would be to say around 1,000 students would express confusion at times where the instructor could have been more clear about something.
 
 
 ### Heatmapped Video
