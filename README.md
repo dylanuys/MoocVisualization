@@ -31,21 +31,9 @@ The dataset visualized is the collection of (x,y,time) student confusion clicks 
 
 ### Custom Video Player
 
-
-## Potential extensions
-* Linkage of confusion points with class forum 
-    * Allow students to create a class forum post associated with with a confusion click without leaving their current wepage
-    * There could then exist a bidirectional relationship between forum posts and (x,y,time) points in the video, increasing the cohesiveness of the MOOC system as a whole.
-          * This could also help short-circuit instructor intervention by facilitating student-student help
-    
-* In addition to the basic (x,y,time) attributes of each point of confusion, it may prove useful to allow students to also associate a "type" of confusion with a given click. Since our visualization uses only x,y and time, these are out of the scope of this project. Potential types could include the following:
-    * General -- student is generally confused on the topic
-    * Notation -- student doesn't understand the notation being used
-    * Speech -- student didn't understand what the instructor said
-          * This would be a case where x and y aren't relevant, which points towards the need for entirely different methods for visualization
-          
           
 # Implementation Details
+Our implementation involves mostly Python3, HTML5, CSS, Javascript. This section provides a high level overview of the different tasks that the code in this repository accomplishes. Please see the end of each section for notes on where to look for specific code relevant to these tasks. 
 
 ### Data Mocking
 Because the system we proposed doesn't exist (yet), we had to generate data that resembles human clicks. For the sake of automating away the menial, we chose the following approach.
@@ -62,12 +50,37 @@ To accomplish this, we generate three Gaussian distributions - one for x, one fo
    * Typical MOOCs enroll around 43,000 students
    * 6.5% of these students finish the course
    * With 2,795 students finishing the course, a very loose estimate would be to say around 1,000 students would express confusion at times where the instructor could have been more clear about something.
-
+* With these three distributions generated for one given point of confusion, each point added to the video comes from sampling these distributions like this:
+```python
+for i in range(sample_size):
+   new_point = (x_distribution[i], y_distribution[i], time_distribution[i])
+```
+   
+*Relevant code*:
+The HeatMapper class found in heatmapper.py generates this dataset in the load_data() method. Specifically, for every line in the input file (data.csv, by default), add_point_distribution is called 
 
 ### Heatmapped Video
-
+Overlaying a heatmap on a video is accomplished with the ![heatmappy](https://github.com/LumenResearch/heatmappy) Python library. 
+The library accepts tuples with (x,y,millisecond) fields, so we can just choose our potential points of confusion and generate the corresponding dataset of distributions as described in the previous section, and feed this in directly. 
 
 
 ### Custom Video Player
+In order to display the frequency of clicks along the x-axis of our video, we also had to create a custom video player using HTML5, CSS
+
+
+
+## Potential extensions
+* Linkage of confusion points with class forum 
+    * Allow students to create a class forum post associated with with a confusion click without leaving their current wepage
+    * There could then exist a bidirectional relationship between forum posts and (x,y,time) points in the video, increasing the cohesiveness of the MOOC system as a whole.
+          * This could also help short-circuit instructor intervention by facilitating student-student help
+    
+* In addition to the basic (x,y,time) attributes of each point of confusion, it may prove useful to allow students to also associate a "type" of confusion with a given click. Since our visualization uses only x,y and time, these are out of the scope of this project. Potential types could include the following:
+    * General -- student is generally confused on the topic
+    * Notation -- student doesn't understand the notation being used
+    * Speech -- student didn't understand what the instructor said
+          * This would be a case where x and y aren't relevant, which points towards the need for entirely different methods for visualization
+          
+
 
 
