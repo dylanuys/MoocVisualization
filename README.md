@@ -50,9 +50,9 @@ The dataset visualized is the collection of (x,y,time) student confusion clicks 
 ### Data Mocking
 Because the system we proposed doesn't exist (yet), we had to generate data that resembles human clicks. For the sake of automating away the menial, we chose the following approach.
 
-* For simplicity, consider one possible point of confusion in a video. Let's say that we'd expect students to click on the point (x = 100 pixels, y = 100 pixels, time = 30s), because it has some fancy looking formula or something of the sort. 
-* Our goal in the mocking process is to then generate a group of points around (100,100) in space and around 30s in time. 
-* To accomplish this, we generate three Gaussian distributions - one for x, one for y and one for time.
+For simplicity, consider one possible point of confusion in a video. Let's say that we'd expect students to click on the point (x = 100 pixels, y = 100 pixels, time = 30s), because it has some fancy looking formula or something of the sort. 
+Our goal in the mocking process is to then generate a group of points around (100,100) in space and around 30s in time. 
+To accomplish this, we generate three Gaussian distributions - one for x, one for y and one for time.
       * The x and y distributions are centered at 100, and the script gives them default standard deviations of 20
             * For cases where it makes more intuitive sense for the distributions to be "taller" or "wider" to cover a certain area of the screen, this default is overriden in a manual trial/error manner on a case by case basis. 
       * The time distribution (actually in milliseconds in the script) is centered at 30,000 and has a default standard deviation of 1500ms.   
