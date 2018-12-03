@@ -1,7 +1,7 @@
 # MoocVisualization
 Research project exploring how data visualizations can be used to improve both cognitive engagement for students and iterative content development for educators in massive open online courses. 
 
-## (Proposed) Supporting Infrastucture 
+## Supporting Infrastucture (Proposed) 
 ### MOOC Feedback System
 We propose a system for allowing students to provide feedback that instructors can use for both immediate action and iterative course improvement. The existence of the proposed system would facilitate the development of visualizations similar to what we explore here, the goals of which are to improve cognitive engagement of students and to provide educators with valuable insights to help them improve their content. 
 
@@ -19,12 +19,15 @@ We propose a system for allowing students to provide feedback that instructors c
     * A video player annotated with confusion click frequencies in the form of ticks and a histogram
 
 
-## (Implemented) Visualization Components
+## Visualization Components (Implemented) 
+The main goal is to create a graphical tool where, for a given MOOC video, a viewer can easily identify time intervals wherein students expressed confusion and to subsequently identify areas on the screen at that time relevant to the confusion.
 
-![Visualization Demo Gif](gif1.gif)
+The dataset visualized is the collection of (x,y,time) student confusion clicks desribed in previous sections. There are two components of our visualization, described below, that communicate the data differently. 
 
 
 ### Heatmapped Video
+
+
 
 ### Custom Video Player
 
@@ -41,3 +44,30 @@ We propose a system for allowing students to provide feedback that instructors c
     * Speech -- student didn't understand what the instructor said
           * This would be a case where x and y aren't relevant, which points towards the need for entirely different methods for visualization
           
+          
+# Implementation Details
+
+### Data Mocking
+Because the system we proposed doesn't exist (yet), we had to generate data that resembles human clicks. For the sake of automating away the menial, we chose the following approach.
+
+* For simplicity, consider one possible point of confusion in a video. Let's say that we'd expect students to click on the point (x = 100 pixels, y = 100 pixels, time = 30s), because it has some fancy looking formula or something of the sort. 
+* Our goal in the mocking process is to then generate a group of points around (100,100) in space and around 30s in time. 
+* To accomplish this, we generate three Gaussian distributions - one for x, one for y and one for time.
+      * The x and y distributions are centered at 100, and the script gives them default standard deviations of 20
+            * For cases where it makes more intuitive sense for the distributions to be "taller" or "wider" to cover a certain area of the screen, this default is overriden in a manual trial/error manner on a case by case basis. 
+      * The time distribution (actually in milliseconds in the script) is centered at 30,000 and has a default standard deviation of 1500ms.   
+            * For cases where it makes more intuitive sense for the points to be more spread out over time, this default is overriden in the same way as the x and y standard deviations are. 
+      * Each distribution has a default sample size of 1000. This is very loosely based on the following assumptions:
+            * Our visualization assumes the video and its corresponding click data is sampled from somewhere in the second half corresponding MOOC, after many of the lurkers and unsure students have stopped actively participating or dropped. 
+            * Typical MOOCs enroll around 43,000 students
+            * 6.5% of these students finish the course
+            * With 2,795 students finishing the course, a very loose estimate would be to say around 1,000 students would express confusion at times where the instructor could have been more clear about something.
+
+
+### Heatmapped Video
+
+
+
+### Custom Video Player
+
+
