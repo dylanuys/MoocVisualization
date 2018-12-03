@@ -10,7 +10,26 @@ We propose a system for allowing students to provide feedback that instructors c
 * i.e., each flag (click) corresponds to one (x,y,time) point in the video 
 * In aggregate, these data points can be used to visualize what was generally confusing to students for a given video
 
-<b>Potential extensions</b>
+
+#### Core Feature for Instructors
+* The system will present the aggregate student confusion points (described above as (x,y,time) points) to the instructor in an easily-intepreted fashion. 
+* There are a multitude of ways to do this, and an ideal tool would implement a number of visualizations to maximize how many inisights an instructor is able to make. 
+* The visualization we explore involves two main components, described in detail in the next section:
+    * A video annotated with the (x,y,time) confusion clicks in the form of a heatmap
+    * A video player annotated with confusion click frequencies in the form of ticks and a histogram
+
+
+## (Implemented) Visualization Components
+
+[Visualization Demo Gif](gif1.gif)
+
+
+### Heatmapped Video
+
+### Custom Video Player
+
+
+## Potential extensions
 * Linkage of confusion points with class forum 
     * Allow students to create a class forum post associated with with a confusion click without leaving their current wepage
     * There could then exist a bidirectional relationship between forum posts and (x,y,time) points in the video, increasing the cohesiveness of the MOOC system as a whole.
@@ -22,16 +41,3 @@ We propose a system for allowing students to provide feedback that instructors c
     * Speech -- student didn't understand what the instructor said
           * This would be a case where x and y aren't relevant, which points towards the need for entirely different methods for visualization
           
-
-#### Core Feature for Instructors
-* The system will present the aggregate student confusion points (described above as (x,y,time) points) to the instructor in an easily-intepreted fashion. 
-* There are a multitude of ways to do this, and an ideal tool would implement a number of visualizations to maximize how many inisights an instructor is able to make. 
-* The visualization we explore involves two main components, described in detail in the next section:
-    * A video annotated with the (x,y,time) confusion clicks in the form of a heatmap
-    * A video player annotated with confusion click frequencies in the form of ticks and a histogram
-
-
-## (Implemented) Visualization Components
-### Heatmapped Video
-
-### Custom Video Player
