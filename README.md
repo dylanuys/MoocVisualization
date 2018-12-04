@@ -40,11 +40,13 @@ Each (x,y,time) confusion click is represented as a light blue point on the vide
 
 
 ### Custom Video Player
-The other component of our visualization presents the confusion points as a frequency distribution along the x-axis of the video, as shown below:
+The other component of our visualization presents the confusion points as a frequency distribution along the x-axis of the video, as shown below.:
 
 <p align="center">
    <img alt="video player" src="res/video_player.png" width="75%">
 </p>
+
+Here, the yellow ticks along the x-axis represent student confusion clicks corresponding to the same clicks heatmapped over the video at that time. The histogram beneath gives a visualization of this frequency distribution that makes it easier to identify the point(s) of maximum confusion.
 
 
 # Implementation Details
