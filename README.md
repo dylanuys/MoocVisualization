@@ -57,11 +57,11 @@ for i in range(sample_size):
 ```
    
 *Relevant code*:
-The HeatMapper class found in heatmapper.py generates this dataset in the load_data() method. Specifically, for every line in the input file (data.csv, by default), add_point_distribution is called 
+The `HeatMapper` class found in `heatmapper.py` generates this dataset in the `load_data()` method. Specifically, for every line in the input file (corresponding to a single point of potential confusion), `add_point_distribution()` is called to generate the x,y, and time distributions described above. Once the whole input file is processed, HeatMapper's `heat_points` attribute is populated as a list of (x,y,time) tuples that can then be used as described in the next section. 
 
 ### Heatmapped Video
 Overlaying a heatmap on a video is accomplished with the ![heatmappy](https://github.com/LumenResearch/heatmappy) Python library. 
-The library accepts tuples with (x,y,millisecond) fields, so we can just choose our potential points of confusion and generate the corresponding dataset of distributions as described in the previous section, and feed this in directly. 
+The library accepts tuples with (x,y,millisecond) fields, so we simply choose our potential points of confusion and generate the corresponding dataset of distributions as described in the previous section, and feed this in directly. 
 
 
 ### Custom Video Player
