@@ -83,7 +83,19 @@ The `HeatMapper` class found in `heatmapper.py` generates this dataset in the `l
 
 ### Heatmapped Video
 Overlaying a heatmap on a video is accomplished with the ![heatmappy](https://github.com/LumenResearch/heatmappy) Python library. 
-The library accepts tuples with (x,y,millisecond) fields, so we simply feed in the datset described above.
+The library accepts tuples with (x,y,millisecond) fields, so we simply feed in the datset described above. Specifically, once the `Heatmapper` class is finished loading the data points and creating points from their associated distributions, it calls the `apply_heatmap()` method to add these points to the input video file and write it back to a new file, like this:
+
+```python
+  img_hm = Heatmapper()
+  video_hm = VideoHeatmapper(img_hm)
+  video_out = video_hm.heatmap_on_video_path(video_path=self.video_path,
+                                             points=self.heat_points)
+
+  video_out.write_videofile(self.out_path, bitrate="5000k", fps=24)
+```
+
+*Relevant code*:
+The `HeatMapper` class found in `heatmapper.py` calls `apply_heatmap()` after calling `load_data()`, generating a video whose associated filename would be `video_heatmapped.mp4` if the input file was called `video.mp4`/
 
 
 ### Custom Video Player
@@ -102,6 +114,7 @@ In order to display the frequency of clicks along the x-axis of our video, we al
     * Notation -- student doesn't understand the notation being used
     * Speech -- student didn't understand what the instructor said
           * This would be a case where x and y aren't relevant, which points towards the need for entirely different methods for visualization
+          
           
 
 
