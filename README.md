@@ -20,7 +20,7 @@ We propose a system for allowing students to provide feedback that instructors c
 
 
 ## Visualization Components (Implemented) 
-The main goal is to create a graphical tool where, for a given MOOC video, a viewer can easily identify time intervals wherein students expressed confusion and to subsequently identify areas on the screen at that time relevant to the confusion. Below is a rough example of what this visualization might look like if students were learning about the K-Means clustering algorithm and became confused about the algorithm's convergence or how to update clusters. 
+The main goal is to create a graphical tool where, for a given MOOC video, a viewer can easily identify time intervals wherein students expressed confusion and to subsequently identify areas on the screen at that time relevant to the confusion. Below is a rough example of what this visualization might look like if students were learning about the K-Means clustering algorithm and became confused about the algorithm's convergence or how to update clusters. You can read more about how the data visualized here was generated in the Implementation Details section under Data Mocking.
 
 <p align="center">
    <img alt="main tool" src="res/vis1.gif">
