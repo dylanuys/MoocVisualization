@@ -33,10 +33,12 @@ Each (x,y,time) confusion click is represented as a light blue point on the vide
 
 
 ### Custom Video Player
+The other component of our visualization presents the confusion points as a frequency distribution along the x-axis of the video, as shown below:
 
-          
+![Video Player](res/video_player.gif)          
           
 ### Together:
+Together, these two aspects provide the viewer with an understanding of general trends in expressed confusion throuhgout their video. 
 
 ![The Big Picture](res/vis1.gif)
 
