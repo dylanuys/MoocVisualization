@@ -23,9 +23,8 @@ We propose a system for allowing students to provide feedback that instructors c
 The main goal is to create a graphical tool where, for a given MOOC video, a viewer can easily identify time intervals wherein students expressed confusion and to subsequently identify areas on the screen at that time relevant to the confusion.
 
 <p align="center">
-   <img alt="main tool" src="res/vis1.png">
+   <img alt="main tool" src="res/vis1.gif">
 </p>
-
 
 
 The dataset visualized is the collection of (x,y,time) student confusion clicks desribed in previous sections. There are two components of our visualization, described below, that communicate the data differently. 
@@ -88,7 +87,7 @@ The library accepts tuples with (x,y,millisecond) fields, so we simply feed in t
 
 
 ### Custom Video Player
-In order to display the frequency of clicks along the x-axis of our video, we also had to create a custom video player using HTML5, CSS
+In order to display the frequency of clicks along the x-axis of our video, we also had to create a custom video player using HTML5, CSS.
 
 
 
