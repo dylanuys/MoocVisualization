@@ -29,13 +29,15 @@ The dataset visualized is the collection of (x,y,time) student confusion clicks 
 The first component is a heatmap overlaid on the video, so this would require postprocessing with both the original video file and the collection of student clicks available on-hand. 
 Each (x,y,time) confusion click is represented as a light blue point on the video. As these occur in clusters around the same areas in space-time, these blue points group together to form warmer colors, as shown in the gif below.
 
-![confusion point](res/single_point.gif)
+<p align="center">
+   ![confusion point](res/single_point.gif)
+</p>
 
 
 ### Custom Video Player
 The other component of our visualization presents the confusion points as a frequency distribution along the x-axis of the video, as shown below:
 
-![Video Player](res/video_player.gif)          
+![Video Player](res/video_player.png)          
           
 ### Together:
 Together, these two aspects provide the viewer with an understanding of general trends in expressed confusion throuhgout their video. 
