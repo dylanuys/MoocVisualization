@@ -50,7 +50,7 @@ To accomplish this, we generate three Gaussian distributions - one for x, one fo
    * Typical MOOCs enroll around 43,000 students
    * 6.5% of these students finish the course
    * With 2,795 students finishing the course, a very loose estimate would be to say around 1,000 students would express confusion at times where the instructor could have been more clear about something.
-* With these three distributions generated for one given point of confusion, each point added to the video comes from sampling these distributions like this:
+* With these three distributions generated for one given point of confusion, each point added to the video comes from sampling these distributions like this (taken from `heatmapper.py`):
 
 ```python
   # for each point of confusion,
