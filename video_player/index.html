@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Video Player</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+    <style>
+            .axis {
+              font: 10px sans-serif;
+            }
+            .axis path,
+            .axis line {
+              fill: none;
+              stroke: #000;
+              shape-rendering: crispEdges;
+            }
+
+            path { 
+                stroke: steelblue;
+                stroke-width: 2;
+                fill: none;
+            }
+    </style>
+</head>
+
+<body>
+  
+    <div class="container">
+        <div class="player">
+            <video class="player__video viewer" src="./data/kmeans_heatmapped.mp4"></video>
+
+            <div class="player__controls">
+                <div class="progress">
+                    <div class="progress__filled"></div>
+                </div>
+                <button class="player__button toggle" title="Toggle Play">►</button>
+                <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
+                <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
+                <button data-skip="-10" class="player__button">« 10s</button>
+                <button data-skip="25" class="player__button">25s »</button>
+                <button class="player__button fullscreen">[ ]</button>
+            </div>
+        </div>
+    </div>
+    <div class="svg_container"></div>
+</body>
+        
+<!-- <svg class="chart"></svg> -->
+<script>
+
+    d3.csv("./data/clicks.csv", function(dat) {
+        dat.forEach(function(d) {
+            d.click= +d.click;
+        });
+        d3.select(".progress").selectAll("div")
+            .data(dat)
+            .enter().append("div")
+            .style({'width': '0.0075%', 'background': 'yellow', 'position': 'absolute', 'height': '100%'})
+            .style('left', function(d) { return d.click + '%'; }) 
+        
+    });
+
+
+    var margin = {top: 20, right: 200, bottom: 70, left: 160},
+        width = 1000 - margin.left - margin.right,
+        height = 150 - margin.top - margin.bottom;
+
+    // Parse the date / times
+    var	parseTime = d3.time.format("%M:%S").parse;
+
+    var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+    var y = d3.scale.linear().range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(d3.time.format("%M:%S"));
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .ticks(5);
+    
+    var svg = d3.select("body").selectAll("div.svg_container").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("./data/bar-data.csv", function(error, data) {
+
+        data.forEach(function(d) {
+            d.date = parseTime(d.time);
+            d.value = +d.value;
+        });
+        
+    x.domain(data.map(function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", "-.55em")
+        .attr("transform", "translate(20, 15)" );
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Frequency");
+
+    svg.selectAll("bar")
+        .data(data)
+        .enter().append("rect")
+        .style("fill", "steelblue")
+        .attr("x", function(d) { return x(d.date); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.value); })
+        .attr("height", function(d) { return height - y(d.value); });
+
+    });
+</script>
+<script src="assets/scripts.js"></script>
+
+
+</html>
