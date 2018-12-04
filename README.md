@@ -51,17 +51,24 @@ To accomplish this, we generate three Gaussian distributions - one for x, one fo
    * 6.5% of these students finish the course
    * With 2,795 students finishing the course, a very loose estimate would be to say around 1,000 students would express confusion at times where the instructor could have been more clear about something.
 * With these three distributions generated for one given point of confusion, each point added to the video comes from sampling these distributions like this:
+
 ```python
-for i in range(sample_size):
-   new_point = (x_distribution[i], y_distribution[i], time_distribution[i])
+  # for each point of confusion,
+  x_gaus = np.random.normal(x, x_std, num_points)
+  y_gaus = np.random.normal(y, y_std, num_points)
+  ms_gaus = np.random.normal(ms, ms_std, num_points)
+
+  for i in range(num_points):
+      point = (x_gaus[i], y_gaus[i], ms_gaus[i])
+      self.heat_points.append(point)
 ```
    
 *Relevant code*:
-The `HeatMapper` class found in `heatmapper.py` generates this dataset in the `load_data()` method. Specifically, for every line in the input file (corresponding to a single point of potential confusion), `add_point_distribution()` is called to generate the x,y, and time distributions described above. Once the whole input file is processed, HeatMapper's `heat_points` attribute is populated as a list of (x,y,time) tuples that can then be used as described in the next section. 
+The `HeatMapper` class found in `heatmapper.py` generates this dataset in the `load_data()` method. Specifically, for every line in the input file (corresponding to a single point of potential confusion), `add_point_distribution()` is called to generate the x,y, and time distributions described above. Once the whole input file is processed, HeatMapper's `heat_points` attribute is populated as a list of (x,y,time) tuples. Read the next section to see how these are used. 
 
 ### Heatmapped Video
 Overlaying a heatmap on a video is accomplished with the ![heatmappy](https://github.com/LumenResearch/heatmappy) Python library. 
-The library accepts tuples with (x,y,millisecond) fields, so we simply choose our potential points of confusion and generate the corresponding dataset of distributions as described in the previous section, and feed this in directly. 
+The library accepts tuples with (x,y,millisecond) fields, so we simply feed in the datset described above.
 
 
 ### Custom Video Player
