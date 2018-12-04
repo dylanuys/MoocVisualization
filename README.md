@@ -22,6 +22,12 @@ We propose a system for allowing students to provide feedback that instructors c
 ## Visualization Components (Implemented) 
 The main goal is to create a graphical tool where, for a given MOOC video, a viewer can easily identify time intervals wherein students expressed confusion and to subsequently identify areas on the screen at that time relevant to the confusion.
 
+<p align="center">
+   <img alt="main tool" src="res/vis1.png">
+</p>
+
+
+
 The dataset visualized is the collection of (x,y,time) student confusion clicks desribed in previous sections. There are two components of our visualization, described below, that communicate the data differently. 
 
 
@@ -30,19 +36,16 @@ The first component is a heatmap overlaid on the video, so this would require po
 Each (x,y,time) confusion click is represented as a light blue point on the video. As these occur in clusters around the same areas in space-time, these blue points group together to form warmer colors, as shown in the gif below.
 
 <p align="center">
-   ![confusion point](res/single_point.gif)
+   <img alt="confusion point" src="res/single_point.gif">
 </p>
 
 
 ### Custom Video Player
 The other component of our visualization presents the confusion points as a frequency distribution along the x-axis of the video, as shown below:
 
-![Video Player](res/video_player.png)          
-          
-### Together:
-Together, these two aspects provide the viewer with an understanding of general trends in expressed confusion throuhgout their video. 
-
-![The Big Picture](res/vis1.gif)
+<p align="center">
+   <img alt="video player" src="res/video_player.png" width="75%">
+</p>
 
 
 # Implementation Details
